@@ -1,152 +1,137 @@
 <!DOCTYPE html>
 <html data-ng-app="app">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <title>Diniz</title>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<title>Diniz</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  </head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
 
-  <body class="bg-light">
+<body class="bg-light">
 
-    <div class="container">
-      <div class="py-5 text-center">
-        <h2>Avaliação para Desenvolvedor de Software</h2>
-      </div>
+	<div class="container">
+		<div class="py-5 text-center">
+			<h2>Avaliação para Desenvolvedor de Software</h2>
+		</div>
 
-      <div class="row" ng-controller="FormCtrl as vm">
+		<div class="row" ng-controller="FormCtrl as vm">
 
-        <div class="col-md-2 order-md-1"></div>
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Exercício 1</h4>
-          <form class="needs-validation" novalidate>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="percursoPavimentado">Trajeto pavimentado</label>
+			<div class="col-md-2 order-md-1"></div>
+			<div class="col-md-8 order-md-1">
+				<h4 class="mb-3">Exercício 1</h4>
+				<form class="needs-validation" novalidate>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="percursoPavimentado">Trajeto pavimentado</label>
 
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">KM</div>
-                  </div>
-                  <input type="text"
-                         class="form-control"
-                         id="percursoPavimentado"
-                         placeholder="Ex.: 10"
-                         ng-model="vm.custo.percursoPavimentado"
-                         somente-numeros>
-                </div>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text">KM</div>
+								</div>
+								<input type="text" class="form-control" id="percursoPavimentado"
+									placeholder="Ex.: 10" ng-model="vm.custo.percursoPavimentado"
+									somente-numeros>
+							</div>
 
-                <label for="percursoNaoPavimentado">Trajeto não pavimentado</label>
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">KM</div>
-                  </div>
-                  <input type="text"
-                         class="form-control"
-                         id="percursoNaoPavimentado"
-                         placeholder="Ex.: 8,1"
-                         ng-model="vm.custo.percursoNaoPavimentado"
-                         somente-numeros>
-                </div>
+							<label for="percursoNaoPavimentado">Trajeto não
+								pavimentado</label>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text">KM</div>
+								</div>
+								<input type="text" class="form-control"
+									id="percursoNaoPavimentado" placeholder="Ex.: 8,1"
+									ng-model="vm.custo.percursoNaoPavimentado" somente-numeros>
+							</div>
 
-                <label for="tipoVeiculoSelect">Tipo de veículo</label>
-                <select id="tipoVeiculoSelect"
-                        ng-model="vm.custo.tipoVeiculo"
-                        class="custom-select d-block w-100">
-                  <option ng-repeat="option in vm.tiposVeiculos"
-                          ng-value="option.id">
-                    {{option.descricao}}
-                  </option>
-                </select>
+							<label for="tipoVeiculoSelect">Tipo de veículo</label> <select
+								id="tipoVeiculoSelect" ng-model="vm.custo.tipoVeiculo"
+								class="custom-select d-block w-100">
+								<option ng-repeat="option in vm.tiposVeiculos"
+									ng-value="option.id">{{option.descricao}}</option>
+							</select> <label for="peso">Peso da carga (T)</label> <select id="peso"
+								ng-model="vm.custo.peso" class="custom-select d-block w-100">
+								<option ng-repeat="option in vm.pesos" ng-value="option">
+									{{option}}</option>
+							</select>
+						</div>
+						<div class="col-md-6 mb-3" ng-if="vm.custoTotal">
+							<label for=""></label>
+							<div class="jumbotron">
+								<p class="lead">O custo total para o transporte é de:</p>
+								<h2 class="display-5">
+									<span ng-bind="vm.custoTotal | currency"></span>
+								</h2>
+							</div>
+						</div>
+					</div>
+					<div class="btn-group col-md-12" role="group"
+						aria-label="First group">
+						<button type="button" class="btn btn-primary btn-lg btn-block"
+							ng-disabled="!vm.isFormValid()" ng-click="vm.calcular(vm.custo)">
+							Calcular</button>
+						<button type="button" class="btn btn-success"
+							ng-click="vm.limpar()">Limpar</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-2 order-md-1"></div>
+		</div>
 
-                <label for="peso">Peso da carga (T)</label>
-                <select id="peso"
-                        ng-model="vm.custo.peso"
-                        class="custom-select d-block w-100">
-                  <option ng-repeat="option in vm.pesos"
-                          ng-value="option">
-                    {{option}}
-                  </option>
-                </select>
-              </div>
-              <div class="col-md-6 mb-3" ng-if="vm.custoTotal">
-                <label for=""></label>
-                <div class="jumbotron">
-        				  <p class="lead">O custo total para o transporte é de:</p>
-        				  <h2 class="display-5"><span ng-bind="vm.custoTotal | currency"></span></h2>
-        				</div>
-              </div>
-            </div>
-            <div class="btn-group col-md-12" role="group" aria-label="First group">
-              <button type="button"
-                      class="btn btn-primary btn-lg btn-block"
-                      ng-disabled="!vm.isFormValid()"
-                      ng-click="vm.calcular(vm.custo)">
-                Calcular
-              </button>
-              <button type="button"
-                      class="btn btn-success"
-                      ng-click="vm.limpar()">
-                Limpar
-              </button>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-2 order-md-1"></div>
-      </div>
+		<hr class="mb-4">
+		<br>
 
-      <hr class="mb-4"><br>
+		<div class="row" ng-controller="FormCtrl as vm">
 
-      <div class="row" ng-controller="FormCtrl as vm">
+			<div class="col-md-2 order-md-1"></div>
+			<div class="col-md-8 order-md-1">
+				<h4 class="mb-3">Exercício 2</h4>
+				<form class="needs-validation" novalidate>
+					<div class="row" ng-if="vm.notasMultiplasComValor">
+						<label><strong>Mais de uma nota, com valores:</strong></label> <br>
+						<span ng-bind="vm.notasMultiplasComValor"></span>
+					</div>
+					<div class="row" ng-if="vm.notasMultiplasSemValor">
+						<label><strong>Mais de uma nota, sem valores:</strong></label> <br>
+						<span ng-bind="vm.notasMultiplasSemValor"></span>
+					</div>
+					<div class="row" ng-if="vm.notaUnicaComValor">
+						<label><strong>Uma nota, com valor:</strong></label> <br> <span
+							ng-bind="vm.notaUnicaComValor"></span>
+					</div>
+					<div class="row" ng-if="vm.notaUnicaSemValor">
+						<label><strong>Uma nota, sem valor:</strong></label> <br> <span
+							ng-bind="vm.notaUnicaSemValor"></span>
+					</div>
+					<button type="button" class="btn btn-primary btn-lg btn-block"
+						ng-click="vm.gerarObservacoes()">Gerar observações</button>
+				</form>
+			</div>
+			<div class="col-md-2 order-md-1"></div>
+		</div>
+	</div>
 
-        <div class="col-md-2 order-md-1"></div>
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Exercício 2</h4>
-          <form class="needs-validation" novalidate>
-            <div class="row" ng-if="vm.notasMultiplasComValor">
-              <label><strong>Mais de uma nota, com valores:</strong></label>
-              <br>
-              <span ng-bind="vm.notasMultiplasComValor"></span>
-            </div>
-            <div class="row" ng-if="vm.notasMultiplasSemValor">
-              <label><strong>Mais de uma nota, sem valores:</strong></label>
-              <br>
-              <span ng-bind="vm.notasMultiplasSemValor"></span>
-            </div>
-            <div class="row" ng-if="vm.notaUnicaComValor">
-              <label><strong>Uma nota, com valor:</strong></label>
-              <br>
-              <span ng-bind="vm.notaUnicaComValor"></span>
-            </div>
-            <div class="row" ng-if="vm.notaUnicaSemValor">
-              <label><strong>Uma nota, sem valor:</strong></label>
-              <br>
-              <span ng-bind="vm.notaUnicaSemValor"></span>
-            </div>
-            <button type="button"
-                    class="btn btn-primary btn-lg btn-block"
-                    ng-click="vm.gerarObservacoes()">
-              Gerar observações
-            </button>
-          </form>
-        </div>
-        <div class="col-md-2 order-md-1"></div>
-      </div>
-    </div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/i18n/angular-locale_pt-br.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/i18n/angular-locale_pt-br.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
-
-    <script src="js/app.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/somente-numeros.directive.js"></script>
-    <script src="js/form.service.js"></script>
-    <script src="js/form.controller.js"></script>
-  </body>
+	<script src="js/app.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/somente-numeros.directive.js"></script>
+	<script src="js/form.service.js"></script>
+	<script src="js/form.controller.js"></script>
+</body>
 </html>

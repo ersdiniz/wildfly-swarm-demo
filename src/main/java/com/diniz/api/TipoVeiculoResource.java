@@ -1,7 +1,7 @@
 package com.diniz.api;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -22,10 +22,11 @@ public class TipoVeiculoResource {
 
     @GET
     public Response findAll() {
-        final List<DynamicDto> listDtos = new ArrayList<DynamicDto>(TipoVeiculo.values().length);
-        for (TipoVeiculo tipo : TipoVeiculo.values()) {
-            listDtos.add(DynamicDto.of().with("id", tipo.getId()).with("descricao", tipo.getDescricao()));
-        }
-        return Response.ok(listDtos).build();
+        return Response.ok(
+                Arrays.asList(TipoVeiculo.values())
+                        .stream()
+                        .map(tipo -> DynamicDto.of().with("id", tipo.getId()).with("descricao", tipo.getDescricao()))
+                        .collect(Collectors.toList()))
+                .build();
     }
 }

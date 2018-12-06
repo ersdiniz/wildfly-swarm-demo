@@ -43,11 +43,23 @@ public class GeradorObservacaoTest {
     }
 
     @Test
+    public void testGeracaoObservacaoCompletaSemDados() {
+        assertEquals("", geradorObservacao.geraObservacaoCompleta(Collections.emptyList()));
+        assertEquals("", geradorObservacao.geraObservacaoCompleta(null));
+    }
+
+    @Test
     public void testGeracaoObservacaoSimplificada() {
         final String resultado1 = "Fatura das notas fiscais de simples remessa: 1, 2, 3, 4 e 5.";
         final String resultado2 = "Fatura da nota fiscal de simples remessa: 3.";
 
         assertEquals(resultado1, geradorObservacao.geraObservacaoSimplificada(mockNotasFiscais()));
         assertEquals(resultado2, geradorObservacao.geraObservacaoSimplificada(mockNotaFiscal()));
+    }
+
+    @Test
+    public void testGeracaoObservacaoSimplificadaSemDados() {
+        assertEquals("", geradorObservacao.geraObservacaoSimplificada(Collections.emptyList()));
+        assertEquals("", geradorObservacao.geraObservacaoSimplificada(null));
     }
 }

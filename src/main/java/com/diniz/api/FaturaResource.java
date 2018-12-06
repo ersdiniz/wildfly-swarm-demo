@@ -18,6 +18,9 @@ import com.diniz.dto.DynamicDto;
 import com.diniz.model.GeradorObservacao;
 import com.diniz.model.NotaFiscal;
 
+/**
+ * Resource criado para demonstração das observações criadas
+ */
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON })
 @Path("/faturas")

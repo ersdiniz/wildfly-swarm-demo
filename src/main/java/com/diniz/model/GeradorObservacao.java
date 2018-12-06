@@ -20,7 +20,7 @@ public class GeradorObservacao {
      * @return
      */
     public String geraObservacaoCompleta(final List<NotaFiscal> notasFiscais) {
-        return notasFiscais.isEmpty() ? "" : geraObservacao(notasFiscais, true);
+        return notasFiscais == null || notasFiscais.isEmpty() ? "" : geraObservacao(notasFiscais, true);
     }
 
     /**
@@ -30,7 +30,7 @@ public class GeradorObservacao {
      * @return
      */
     public String geraObservacaoSimplificada(final List<NotaFiscal> notasFiscais) {
-        return notasFiscais.isEmpty() ? "" : geraObservacao(notasFiscais, false);
+        return notasFiscais == null || notasFiscais.isEmpty() ? "" : geraObservacao(notasFiscais, false);
     }
 
     private String getPrefixo(final List<NotaFiscal> notasFiscais) {
@@ -43,7 +43,7 @@ public class GeradorObservacao {
 
         for (Iterator<NotaFiscal> iterator = notasFiscais.iterator(); iterator.hasNext();) {
             final NotaFiscal notaFiscal = iterator.next();
-            final String separador = stringBuilder.length() == 0 ? "" : (iterator.hasNext() ? ", " : " e ");
+            final String separador = stringBuilder.length() == 0 ? "" : iterator.hasNext() ? ", " : " e ";
 
             stringBuilder
                     .append(separador)
