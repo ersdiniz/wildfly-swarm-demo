@@ -17,7 +17,7 @@
 
 		<!-- Test dependencies -->
 		<version.cdi-unit>2.2.1</version.cdi-unit>
-		<version.j-unit>4.10</version.j-unit>
+		<version.j-unit>4.13.1</version.j-unit>
 		<version.jersey-common>2.22.2</version.jersey-common>
 	</properties>
 
